@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+
+<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+            <link rel="stylesheet" type="text/css" href="/assets/css/freelancer.min.css">
+            <link rel="stylesheet" type="text/css" href="/assets/css/freelancer.css">
+            <title>VREMAIL | VREME | MAIL</title>
+    </head>
+
+   <body id="page-top" class="index">
+       <!-- Header -->
+    <header>
+        <div class="container" id="maincontent" tabindex="-1">
+            <div class="row">
+                <div class="col-lg-12">
+         <img class="img-responsive" src="https://image.ibb.co/ewR95Q/LOGO_VREMAIL_sm.png" alt="logo">
+                <a href="/" class="button-home">DOMOV</a>
+                    <a href="/vreme" class="button-home">VREME</a>
+                <a href="{{logout_url}}" class="button-home">LOGOUT</a>
+
+                    <a href="/vremail" class="button-home-2">Prejeto</a>
+                    <a href="/poslano" class="button-home-2">Poslano</a>
+        </>
+
+    <p>Prijavljen/a si kot: {{user.nickname()}}</p>
+
+
+            <form action="/vremail" method="post">
+                    Od:<br><input name="od" type="text" value="{{user}}"><br><br>
+                    Prejemnik:<br><input name="do" placeholder="mail naslovnika"><br><br>
+                    Sporočilo:<br> <textarea rows="4" cols="50" name="sporocilo" required></textarea><br><br>
+                    <button class="button-home" type="submit" name="">Pošlji mail</button>
+            </form>
+       <p>{{uspeh}}</p>
+
+    <table>
+        {% for item in data|sort(attribute='created_on', reverse = True) %}
+        <tr>
+            <td>OD:{{item.od}} </td>
+            <td>&nbsp; ZA:{{item.do}} </td>
+            <td>&nbsp; MSG:{{item.sporocilo}} </td>
+            <td>&nbsp; URA:{{item.created_on}}</td>
+        </tr>
+         {%endfor%}
+    </table>
+                </div>
+    </body>
+</html>
